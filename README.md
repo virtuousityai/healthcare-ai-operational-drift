@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/1176591665.svg)](https://doi.org/10.5281/zenodo.18919542)
+
 # Operational Drift in Healthcare AI Agents
 
 **Author:** Sathiyan Kutty  
