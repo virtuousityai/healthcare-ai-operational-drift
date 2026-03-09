@@ -1,0 +1,256 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \\documentclass[11pt]\{article\}\
+\
+\\usepackage\{amsmath\}\
+\\usepackage\{graphicx\}\
+\\usepackage\{booktabs\}\
+\\usepackage\{hyperref\}\
+\
+\\title\{\
+Safe Model Migration for Healthcare Prior Authorization Agents:\
+Operational Drift, Escalation Stability, and Compliance-Aware Evaluation\
+\}\
+\
+\\author\{\
+Independent Researcher\
+\}\
+\
+\\date\{2026\}\
+\
+\\begin\{document\}\
+\
+\\maketitle\
+\
+\\begin\{abstract\}\
+\
+Healthcare organizations are rapidly deploying generative AI agents to automate administrative workflows such as clinical documentation, medical coding, and prior authorization review. Simultaneously, regulatory bodies are modernizing healthcare infrastructure and governance expectations. The CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F) introduces requirements for prior authorization APIs, response times, and transparency in reporting authorization metrics.\
+\
+Despite these developments, upgrades to large language model (LLM) systems are often evaluated primarily through benchmark improvements rather than operational stability. Small behavioral differences between model versions can alter approval decisions, coding outcomes, and escalation behavior, potentially affecting coverage determinations and compliance obligations.\
+\
+This paper introduces a migration assurance framework for healthcare AI agents. We define the \\textit\{Operational Drift Score (ODS)\} and the \\textit\{Escalation Stability Score (ESS)\} to quantify changes in workflow outcomes and human-review routing across model upgrades. Using semi-realistic public clinical scenarios, we simulate administrative healthcare workflows including prior authorization, documentation generation, and medical coding.\
+\
+Our results demonstrate that small model differences can propagate into operationally significant workflow changes. We propose a compliance-aware evaluation protocol aligned with emerging CMS interoperability expectations and provide a model migration checklist for CIOs and CMIOs responsible for deploying AI agents in healthcare administrative systems.\
+\
+\\end\{abstract\}\
+\
+\\section\{Introduction\}\
+\
+Generative AI systems are increasingly deployed in healthcare administrative workflows such as documentation generation, coding assistance, and prior authorization processing. Recent studies suggest that hospitals are actively experimenting with generative AI systems connected to electronic health record environments.\
+\
+While much research focuses on improving model capabilities, operational deployment introduces a new challenge: behavioral stability across model upgrades.\
+\
+Administrative healthcare workflows are highly sensitive to small output differences. For example:\
+\
+\\begin\{itemize\}\
+\\item A missing clinical detail in documentation may alter diagnosis coding.\
+\\item Coding changes may affect coverage interpretation.\
+\\item Coverage interpretation may alter prior authorization outcomes.\
+\\end\{itemize\}\
+\
+These cascades create what we call \\textbf\{operational drift\}: changes in workflow-relevant behavior between model versions.\
+\
+Policy developments further increase the importance of operational stability. The CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F) introduces standardized APIs, improved transparency, and reporting expectations for prior authorization processes.\
+\
+Together, these developments create a gap between current model evaluation practices and operational governance requirements.\
+\
+This paper proposes a framework for evaluating operational drift and escalation stability during model migration.\
+\
+\\section\{Policy and Operational Context\}\
+\
+Healthcare AI deployment is increasingly influenced by federal interoperability initiatives and administrative modernization efforts.\
+\
+\\subsection\{CMS Interoperability and Prior Authorization Rule\}\
+\
+The CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F) introduces improvements to prior authorization processes through:\
+\
+\\begin\{itemize\}\
+\\item standardized prior authorization APIs\
+\\item transparency requirements for authorization metrics\
+\\item improved interoperability between payers and providers\
+\\end\{itemize\}\
+\
+These developments increase pressure on healthcare organizations to maintain predictable and auditable administrative workflows.\
+\
+\\subsection\{CMS WISeR Model\}\
+\
+The CMS Wasteful and Inappropriate Service Reduction (WISeR) model explores the use of advanced technologies to support prior authorization review processes.\
+\
+The model evaluates:\
+\
+\\begin\{itemize\}\
+\\item decision accuracy\
+\\item processing time\
+\\item provider experience\
+\\item beneficiary protection\
+\\end\{itemize\}\
+\
+These priorities highlight the need for operational evaluation frameworks for AI-assisted workflows.\
+\
+\\subsection\{Health IT Transparency Requirements\}\
+\
+The ONC HTI-1 rule introduces transparency expectations for predictive algorithms embedded in certified health IT systems. Organizations are expected to document intended use, versioning, and limitations of predictive models.\
+\
+These expectations increase the importance of governance during model migration.\
+\
+\\section\{Operational Drift\}\
+\
+Operational drift occurs when two model versions produce outputs that differ in ways that alter administrative workflow outcomes.\
+\
+Operational drift differs from traditional model evaluation because it focuses on:\
+\
+\\begin\{itemize\}\
+\\item workflow decisions\
+\\item policy interpretation\
+\\item escalation routing\
+\\item downstream operational effects\
+\\end\{itemize\}\
+\
+Operational drift can occur even when narrative outputs appear similar.\
+\
+\\section\{Migration Assurance Metrics\}\
+\
+\\subsection\{Operational Drift Score\}\
+\
+Operational Drift Score quantifies differences in workflow outcomes between model versions.\
+\
+\\begin\{equation\}\
+ODS = \\sum_\{i=1\}^\{n\} w_i D_i\
+\\end\{equation\}\
+\
+Where:\
+\
+\\begin\{itemize\}\
+\\item $D_i$ represents drift magnitude for dimension $i$\
+\\item $w_i$ represents operational importance weight\
+\\end\{itemize\}\
+\
+Dimensions include documentation fidelity, coding stability, policy adherence, decision outcomes, and workflow propagation.\
+\
+\\subsection\{Escalation Stability Score\}\
+\
+Escalation Stability Score measures consistency in human review routing.\
+\
+\\begin\{equation\}\
+ESS = 1 - \\frac\{E_\{change\}\}\{E_\{total\}\}\
+\\end\{equation\}\
+\
+Where:\
+\
+\\begin\{itemize\}\
+\\item $E_\{change\}$ is the number of cases where escalation behavior differs\
+\\item $E_\{total\}$ is the total number of scenarios evaluated\
+\\end\{itemize\}\
+\
+Low ESS values indicate unstable escalation behavior across model versions.\
+\
+\\section\{Experimental Setup\}\
+\
+Experiments use semi-realistic public clinical scenarios representing administrative healthcare workflows.\
+\
+\\subsection\{Prior Authorization Workflow\}\
+\
+Inputs include clinical descriptions, payer policies, and requested procedures.\
+\
+Outputs include:\
+\
+\\begin\{itemize\}\
+\\item approve\
+\\item deny\
+\\item request additional information\
+\\item escalate to human review\
+\\end\{itemize\}\
+\
+\\subsection\{Documentation Workflow\}\
+\
+Agents generate structured clinical notes from visit summaries.\
+\
+Evaluation focuses on factual completeness and hallucination detection.\
+\
+\\subsection\{Medical Coding Workflow\}\
+\
+Agents generate ICD and CPT code suggestions based on clinical summaries.\
+\
+Evaluation focuses on coding stability across model versions.\
+\
+\\section\{Results\}\
+\
+Initial experiments demonstrate that small output variations across model versions can lead to:\
+\
+\\begin\{itemize\}\
+\\item different prior authorization recommendations\
+\\item coding differences affecting billing categories\
+\\item inconsistent escalation behavior\
+\\end\{itemize\}\
+\
+These effects illustrate measurable operational drift.\
+\
+\\section\{Discussion\}\
+\
+Healthcare organizations deploying AI agents must treat model upgrades as operational migrations rather than simple performance improvements.\
+\
+Operational drift may affect billing accuracy, coverage determinations, and provider workflow.\
+\
+Evaluation frameworks that incorporate workflow outcomes and escalation behavior can help organizations mitigate these risks.\
+\
+\\section\{Limitations\}\
+\
+This study uses synthetic scenarios rather than real-world patient data.\
+\
+Real healthcare workflows involve more complex regulatory and organizational factors.\
+\
+Future work should evaluate operational drift in production deployments.\
+\
+\\section\{Conclusion\}\
+\
+Healthcare administrative workflows are increasingly mediated by AI agents.\
+\
+Operational Drift Score and Escalation Stability Score provide initial tools for evaluating model migration risk.\
+\
+Future research should explore integration of drift monitoring into healthcare governance and deployment processes.\
+\
+\\appendix\
+\
+\\section\{CIO and CMIO Model Migration Checklist\}\
+\
+\\subsection\{Governance\}\
+\
+\\begin\{itemize\}\
+\\item Maintain model version registry\
+\\item Document intended use and limitations\
+\\item Define rollback procedures\
+\\end\{itemize\}\
+\
+\\subsection\{Testing\}\
+\
+\\begin\{itemize\}\
+\\item Run prior authorization scenario replay tests\
+\\item Validate coding stability\
+\\item Evaluate documentation completeness\
+\\end\{itemize\}\
+\
+\\subsection\{Safety\}\
+\
+\\begin\{itemize\}\
+\\item Monitor operational drift metrics\
+\\item Verify escalation routing\
+\\item Review non-affirmation outcomes\
+\\end\{itemize\}\
+\
+\\subsection\{Deployment\}\
+\
+\\begin\{itemize\}\
+\\item Conduct staged rollout\
+\\item Monitor drift metrics continuously\
+\\item Implement automated rollback triggers\
+\\end\{itemize\}\
+\
+\\bibliographystyle\{plain\}\
+\\bibliography\{references\}\
+\
+\\end\{document\}}
